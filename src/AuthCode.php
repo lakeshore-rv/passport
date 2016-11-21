@@ -11,7 +11,14 @@ class AuthCode extends Model
      *
      * @var string
      */
-    protected $table = 'oauth_auth_codes';
+    protected $table = 'oauth_auth_code';
+
+    /**
+     * primary key
+     *
+     * @var integer
+     */
+    protected $primaryKey = 'oauth_auth_codeid';
 
     /**
      * The guarded attributes on the model.
@@ -36,6 +43,8 @@ class AuthCode extends Model
      */
     protected $dates = [
         'expires_at',
+        'added_at',
+        'updated_at',
     ];
 
     /**
@@ -47,4 +56,17 @@ class AuthCode extends Model
     {
         return $this->hasMany(Client::class);
     }
+
+
+    /**
+     * Overide Find method for this Model
+     *
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public static function find($id, $columns = array('*')) {
+        return parent::where('oauth_auth_code', $id)->first();
+    }
+
 }

@@ -64,11 +64,11 @@ class ClientCommand extends Command
         );
 
         $accessClient = new PersonalAccessClient();
-        $accessClient->client_id = $client->id;
+        $accessClient->oauth_clientid = $client->oauth_clientid;
         $accessClient->save();
 
         $this->info('Personal access client created successfully.');
-        $this->line('<comment>Client ID:</comment> '.$client->id);
+        $this->line('<comment>Client ID:</comment> '.$client->oauth_clientid);
         $this->line('<comment>Client Secret:</comment> '.$client->secret);
     }
 

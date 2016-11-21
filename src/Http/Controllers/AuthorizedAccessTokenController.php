@@ -29,7 +29,7 @@ class AuthorizedAccessTokenController
      */
     public function destroy(Request $request, $tokenId)
     {
-        if (is_null($token = $request->user()->tokens->find($tokenId))) {
+        if (is_null($token = $request->user()->tokens->where('oauth_access_token', $tokenId)->first())) {
             return new Response('', 404);
         }
 

@@ -11,7 +11,14 @@ class PersonalAccessClient extends Model
      *
      * @var string
      */
-    protected $table = 'oauth_personal_access_clients';
+    protected $table = 'oauth_personal_access_client';
+
+    /**
+     * PrimaryKey
+     *
+     * @var integer
+     */
+    protected $primaryKey = 'oauth_personal_access_clientid';
 
     /**
      * The guarded attributes on the model.
@@ -29,4 +36,6 @@ class PersonalAccessClient extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+
 }

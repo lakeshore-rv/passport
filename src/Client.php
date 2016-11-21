@@ -21,6 +21,13 @@ class Client extends Model
     protected $primaryKey = 'oauth_clientid';
 
     /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
+
+    /**
      * The guarded attributes on the model.
      *
      * @var array

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuthCode extends Model
 {
+
+
     /**
      * The database table used by the model.
      *
@@ -19,6 +21,13 @@ class AuthCode extends Model
      * @var integer
      */
     protected $primaryKey = 'oauth_auth_codeid';
+
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
 
     /**
      * The guarded attributes on the model.

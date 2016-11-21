@@ -21,6 +21,13 @@ class Token extends Model
     protected $primaryKey = 'oauth_access_tokenid';
 
     /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
+
+    /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool

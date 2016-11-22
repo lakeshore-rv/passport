@@ -51,7 +51,7 @@ class Passport
      *
      * @var string
      */
-    public static $cookie = 'laravel_token';
+    public static $cookie = 'img_token';
 
     /**
      * The storage location of the encryption keys.

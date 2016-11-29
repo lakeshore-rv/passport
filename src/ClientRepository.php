@@ -12,6 +12,7 @@ class ClientRepository
      */
     public function find($id)
     {
+        //primaryKey is still good - No need to override in Client::
         return Client::find($id);
     }
 

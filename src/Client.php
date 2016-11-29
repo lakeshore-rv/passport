@@ -61,7 +61,7 @@ class Client extends Model
      */
     public function authCodes()
     {
-        return $this->hasMany(AuthCode::class);
+        return $this->hasMany(AuthCode::class, 'oauth_clientid', 'oauth_clientid');
     }
 
     /**
@@ -71,7 +71,7 @@ class Client extends Model
      */
     public function tokens()
     {
-        return $this->hasMany(Token::class);
+        return $this->hasMany(Token::class, 'oauth_clientid', 'oauth_clientid');
     }
 
     /**

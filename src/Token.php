@@ -74,7 +74,7 @@ class Token extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'oauth_clientid', 'oauth_clientid');
     }
 
     /**
@@ -128,6 +128,6 @@ class Token extends Model
      * @return mixed
      */
     public static function find($id, $columns = array('*')) {
-        return parent::where('oauth_refresh_token', $id)->first();
+        return parent::where('oauth_access_token', $id)->first();
     }
 }

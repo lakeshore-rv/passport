@@ -63,7 +63,7 @@ class AuthCode extends Model
      */
     public function client()
     {
-        return $this->hasMany(Client::class);
+        return $this->hasMany(Client::class, 'oauth_clientid',  'oauth_clientid');
     }
 
 

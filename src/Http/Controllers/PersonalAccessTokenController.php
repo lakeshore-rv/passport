@@ -54,6 +54,12 @@ class PersonalAccessTokenController
             'scopes' => 'array|in:'.implode(',', Passport::scopeIds()),
         ])->validate();
 
+        /*
+         * @todo -Gugu  This design is only allowing a user to have
+         * a single scope instead of multiple scopes. this mean that for
+         * each site, a user needs a different key. This needs to be addressed.
+         *
+         */
         return $request->user()->createToken(
             $request->name, $request->scopes ?: []
         );

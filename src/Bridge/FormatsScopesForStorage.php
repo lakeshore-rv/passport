@@ -25,7 +25,6 @@ trait FormatsScopesForStorage
      */
     public function formatScopesForStorage(array $scopes)
     {
-        return ctype_digit($scopes[1]) ? $scopes[1] : 1;
-
+        return ctype_digit($scopes[0]) ? $scopes[0] : 1;
     }
 }

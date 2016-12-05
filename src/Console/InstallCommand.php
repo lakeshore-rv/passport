@@ -28,7 +28,15 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->call('passport:keys');
-        $this->call('passport:client', ['--personal' => true, '--name' => config('app.name').' Personal Access Client']);
-        $this->call('passport:client', ['--password' => true, '--name' => config('app.name').' Password Grant Client']);
+        //$this->call('passport:client', ['--personal' => true, '--name' => config('app.name').' Personal Access Client']);
+        //$this->call('passport:client', ['--password' => true, '--name' => config('app.name').' Password Grant Client']);
+
+        //@todo - Get all sites from site_config and create default clients??
+
+        $this->call('passport:client', ['--password' => true, '--name' => 'IMG DMS PW Client']);
+
+        $this->call('passport:client', ['--password' => true, '--name' => 'Lakeshore RV PW Client']);
+
+        $this->call('passport:client', ['--password' => true, '--name' => 'National RV Detroit PW Client']);
     }
 }

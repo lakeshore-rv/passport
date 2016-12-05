@@ -80,6 +80,9 @@ class ClientRepository
      */
     public function create($userId, $name, $redirect, $personalAccess = false, $password = false)
     {
+
+        //@todo - check if name exists. Or make name unique
+
         $client = (new Client)->forceFill([
             'userid' => $userId,
             'oauth_client_name' => $name,

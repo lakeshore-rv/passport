@@ -89,7 +89,7 @@ class ClientCommand extends Command
             null, $name, 'http://localhost'
         );
 
-        $this->info('Password grant client created successfully.');
+        $this->info($name . ' Password grant client created successfully.');
         $this->line('<comment>Client ID:</comment> '.$client->id);
         $this->line('<comment>Client Secret:</comment> '.$client->secret);
     }

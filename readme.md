@@ -1,4 +1,4 @@
-# Laravel Passport
+# Laravel Passport (IMG)
 
 [![Build Status](https://travis-ci.org/laravel/passport.svg)](https://travis-ci.org/laravel/passport)
 [![Total Downloads](https://poser.pugx.org/laravel/passport/d/total.svg)](https://packagist.org/packages/laravel/passport)
@@ -9,6 +9,19 @@
 ## Introduction
 
 Laravel Passport is an OAuth2 server and API authentication package that is simple and enjoyable to use.
+
+## Installation
+
+Run 
+```shell
+composer install 
+```
+
+then run 
+
+```shell
+php artisan passport:install
+```
 
 ## Official Documentation
 

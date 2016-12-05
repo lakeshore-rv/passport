@@ -69,8 +69,8 @@ class TokenRepository
      */
     public function revokeOtherAccessTokens($clientId, $userId, $except = null, $prune = false)
     {
-        $query = Token::where('user_id', $userId)
-                      ->where('client_id', $clientId);
+        $query = Token::where('userid', $userId)
+                      ->where('oauth_clientid', $clientId);
 
         if ($except) {
             $query->where('id', '<>', $except);

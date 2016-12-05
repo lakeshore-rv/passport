@@ -75,10 +75,10 @@ class PersonalAccessTokenControllerTest extends PHPUnit_Framework_TestCase
         $request = Request::create('/', 'GET');
 
         $token1 = Mockery::mock(Laravel\Passport\Token::class.'[revoke]');
-        $token1->id = 1;
+        $token1->oauth_access_token = 1;
         $token1->shouldReceive('revoke')->once();
         $token2 = Mockery::mock(Laravel\Passport\Token::class.'[revoke]');
-        $token2->id = 2;
+        $token2->oauth_access_token = 2;
         $token2->shouldReceive('revoke')->never();
 
         $request->setUserResolver(function () use ($token1, $token2) {

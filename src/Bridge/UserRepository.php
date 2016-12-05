@@ -39,10 +39,10 @@ class UserRepository implements UserRepositoryInterface
         if (method_exists($model, 'findForPassport')) {
             $user = (new $model)->findForPassport($username);
         } else {
-            $user = (new $model)->where('email', $username)->first();
+            $user = (new $model)->where('user_login', $username)->first();
         }
 
-        if (! $user || ! $this->hasher->check($password, $user->password)) {
+        if (! $user || ! $this->hasher->check($password, $user->user_passcode)) {
             return;
         }
 

@@ -9,22 +9,24 @@ trait FormatsScopesForStorage
      *
      * @param  array  $scopes
      * @return string
+
+    public function formatScopesForStorage(array $scopes)
+    {
+    return json_encode(array_map(function ($scope) {
+    return $scope->getIdentifier();
+    }, $scopes));
+    }*/
+
+    /**
+     * Overrride for formatting so that we store only a single scope
+     *
+     * @param array $scopes
+     * @return string
      */
     public function formatScopesForStorage(array $scopes)
     {
-        return json_encode($this->scopesToArray($scopes));
-    }
 
-    /**
-     * Get an array of scope identifiers for storage.
-     *
-     * @param array $scopes
-     * @return array
-     */
-    public function scopesToArray(array $scopes)
-    {
-        return array_map(function ($scope) {
-            return $scope->getIdentifier();
-        }, $scopes);
+        return ctype_digit($scopes[0]) ? $scopes[0] : 1;
+
     }
 }

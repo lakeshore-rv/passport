@@ -43,13 +43,14 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
-        $this->tokenRepository->create([
-            'id' => $accessTokenEntity->getIdentifier(),
-            'user_id' => $accessTokenEntity->getUserIdentifier(),
-            'client_id' => $accessTokenEntity->getClient()->getIdentifier(),
-            'scopes' => $this->scopesToArray($accessTokenEntity->getScopes()),
+
+        $this->database->table('oauth_access_token')->insert([
+            'oauth_access_token' => $accessTokenEntity->getIdentifier(),
+            'userid' => $accessTokenEntity->getUserIdentifier(),
+            'oauth_clientid' => $accessTokenEntity->getClient()->getIdentifier(),
+            'site_config_userid' => $this->formatScopesForStorage($accessTokenEntity->getScopes()),
             'revoked' => false,
-            'created_at' => new DateTime,
+            'added_at' => new DateTime,
             'updated_at' => new DateTime,
             'expires_at' => $accessTokenEntity->getExpiryDateTime(),
         ]);
@@ -60,7 +61,10 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function revokeAccessToken($tokenId)
     {
-        $this->tokenRepository->revokeAccessToken($tokenId);
+
+        $this->database->table('oauth_access_token')
+                    ->where('oauth_access_token', $tokenId)->update(['revoked' => true]);
+
     }
 
     /**
@@ -68,6 +72,9 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function isAccessTokenRevoked($tokenId)
     {
-        return $this->tokenRepository->isAccessTokenRevoked($tokenId);
+
+        return ! $this->database->table('oauth_access_token')
+                    ->where('oauth_access_token', $tokenId)->where('revoked', false)->exists();
+
     }
 }

@@ -6,12 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuthCode extends Model
 {
+
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'oauth_auth_codes';
+    protected $table = 'oauth_auth_code';
+
+    /**
+     * primary key
+     *
+     * @var integer
+     */
+    protected $primaryKey = 'oauth_auth_codeid';
+
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
 
     /**
      * The guarded attributes on the model.
@@ -36,6 +52,8 @@ class AuthCode extends Model
      */
     protected $dates = [
         'expires_at',
+        'added_at',
+        'updated_at',
     ];
 
     /**
@@ -45,6 +63,19 @@ class AuthCode extends Model
      */
     public function client()
     {
-        return $this->hasMany(Client::class);
+        return $this->hasMany(Client::class, 'oauth_clientid',  'oauth_clientid');
     }
+
+
+    /**
+     * Overide Find method for this Model
+     *
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public static function find($id, $columns = array('*')) {
+        return parent::where('oauth_auth_code', $id)->first();
+    }
+
 }

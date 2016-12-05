@@ -11,7 +11,21 @@ class PersonalAccessClient extends Model
      *
      * @var string
      */
-    protected $table = 'oauth_personal_access_clients';
+    protected $table = 'oauth_personal_access_client';
+
+    /**
+     * PrimaryKey
+     *
+     * @var integer
+     */
+    protected $primaryKey = 'oauth_personal_access_clientid';
+
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
 
     /**
      * The guarded attributes on the model.
@@ -27,6 +41,8 @@ class PersonalAccessClient extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'oauth_clientid', 'oauth_clientid');
     }
+
+
 }

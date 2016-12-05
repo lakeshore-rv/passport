@@ -73,8 +73,8 @@ class PersonalAccessTokenFactory
 
         $token = tap($this->findAccessToken($response), function ($token) use ($userId, $name) {
             $this->tokens->save($token->forceFill([
-                'user_id' => $userId,
-                'name' => $name,
+                'userid' => $userId,
+                'oauth_access_token_name' => $name,
             ]));
         });
 
@@ -95,7 +95,7 @@ class PersonalAccessTokenFactory
     {
         return (new ServerRequest)->withParsedBody([
             'grant_type' => 'personal_access',
-            'client_id' => $client->id,
+            'client_id' => $client->oauth_clientid,
             'client_secret' => $client->secret,
             'user_id' => $userId,
             'scope' => implode(' ', $scopes),

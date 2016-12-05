@@ -11,14 +11,28 @@ class Token extends Model
      *
      * @var string
      */
-    protected $table = 'oauth_access_tokens';
+    protected $table = 'oauth_access_token';
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'oauth_access_tokenid';
+
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'added_at';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    //public $incrementing = false;
 
     /**
      * The guarded attributes on the model.
@@ -33,7 +47,7 @@ class Token extends Model
      * @var array
      */
     protected $casts = [
-        'scopes' => 'array',
+        'site_config_userid' => 'array',
         'revoked' => 'bool',
     ];
 
@@ -60,7 +74,7 @@ class Token extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'oauth_clientid', 'oauth_clientid');
     }
 
     /**
@@ -104,5 +118,16 @@ class Token extends Model
     public function transient()
     {
         return false;
+    }
+
+    /**
+     * Overide Find method for this Model
+     *
+     * @param $id
+     * @param array $columns
+     * @return mixed
+     */
+    public static function find($id, $columns = array('*')) {
+        return parent::where('oauth_access_token', $id)->first();
     }
 }

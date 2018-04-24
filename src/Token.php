@@ -47,7 +47,6 @@ class Token extends Model
      * @var array
      */
     protected $casts = [
-        'site_config_userid' => 'array',
         'revoked' => 'bool',
     ];
 

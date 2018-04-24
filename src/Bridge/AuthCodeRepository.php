@@ -46,7 +46,6 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
             'oauth_auth_code' => $authCodeEntity->getIdentifier(),
             'userid' => $authCodeEntity->getUserIdentifier(),
             'oauth_clientid' => $authCodeEntity->getClient()->getIdentifier(),
-            'site_config_userid' => $this->formatScopesForStorage($authCodeEntity->getScopes()),
             'revoked' => false,
             'added_at' => new DateTime,
             'updated_at' => new DateTime,

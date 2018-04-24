@@ -19,7 +19,6 @@ class BridgeAccessTokenRepositoryTest extends PHPUnit_Framework_TestCase
             $this->assertEquals(1, $array['oauth_access_token']);
             $this->assertEquals(2, $array['userid']);
             $this->assertEquals('client-id', $array['oauth_clientid']);
-            $this->assertEquals(json_encode(['scopes']), $array['site_config_userid']);
             $this->assertEquals(false, $array['revoked']);
             $this->assertInstanceOf('DateTime', $array['added_at']);
             $this->assertInstanceOf('DateTime', $array['updated_at']);
